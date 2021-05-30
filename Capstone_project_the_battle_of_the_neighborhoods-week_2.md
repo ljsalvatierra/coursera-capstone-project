@@ -1,4 +1,11 @@
-# Capstone Project - The Battle of Neighborhoods (Week 1)
+---
+title: "Capstone Project - The Battle of Neighborhoods"
+author: Luis J. Salvatierra
+date: March 30, 2021
+output: pdf_document
+---
+
+\pagebreak
 
 ## Summary
 
@@ -48,16 +55,21 @@ We can find similar restaurants in other neighborhoods and sort them by like ran
 
 All this data could help us decide a neighborhood with restaurants with similar cuisine and high ratings.
 
+\pagebreak
+
 ## Methodology
 
 ### Data collection
 
 First we collect **all** *Miami City* **neighborhoods** from [Wikipedia](https://en.wikipedia.org/wiki/List_of_neighborhoods_in_Miami).
-![alt text](images/neighborhoods.png "Miami neighborhoods")
+
+![Miami neighborhoods](images/neighborhoods.png "Miami neighborhoods")
+
+\pagebreak
 
 Searching for **food venues** on *Foursquare*, we obtain a list of **680** from *23* Miami neighborhoods of the *25* in Miami city.
 
-![alt text](images/miami_food_venues.png "Miami food venues by neighborhood")
+![Miami food venues by neighborhood](images/miami_food_venues.png "Miami food venues by neighborhood")
 
 After some initial insights, we observe clearly which neighborhoods are not crowded or far from the city center.
 
@@ -66,6 +78,8 @@ We need additional data to decide which neighborhoods suit our needs:
 * Near venues with similar cuisine
 * User's rating
 * User's number of likes
+
+\pagebreak
 
 ### Data understanding
 
@@ -100,9 +114,11 @@ Then we search for the top 5 venues for the selected neighborhoods.
 | 15 | West Flagler                  | Cuban Restaurant                | Mexican Restaurant   | Food                | Latin American Restaurant | Bakery                        |
 | 16 | Wynwood                       | Asian Restaurant                | Restaurant           | Ice Cream Shop      | Mexican Restaurant        | Peruvian Restaurant           |
 
+\pagebreak
+
 To reduce the number of neighborhods and help us find a pattern, we use **K-means** clustering from *Scikit-learn* library to obtain clusters of similar cuisine. We have decided to group the venues in **5** clusters.
 
-![alt text](images/clusters.png "Miami food venues by neighborhood")
+![Miami food venues by neighborhood](images/clusters.png "Miami food venues by neighborhood")
 
 #### 1st cluster
 
@@ -120,6 +136,8 @@ To reduce the number of neighborhods and help us find a pattern, we use **K-mean
 |    | Neighborhood   | 1      | 2                  | 3                  | 4                | 5                         |
 |---:|:---------------|:-------|:-------------------|:-------------------|:-----------------|:--------------------------|
 |  9 | Flagami        | Bakery | Seafood Restaurant | Spanish Restaurant | Cuban Restaurant | Latin American Restaurant |
+
+\pagebreak
 
 #### 3rd cluster
 
@@ -149,6 +167,8 @@ To reduce the number of neighborhods and help us find a pattern, we use **K-mean
 As we can see in the data, the neighborhoods with similar cuisine are on the 1st and 4th clusters. The 4th cluster includes more neighborhoods that are similar to ours. The 1st cluster is far from crowded venues and not very similar, being coffee places the most common type of venue.
 
 Regarding our needs, the 4th cluster neighborhoods seems like a good place to start.
+
+\pagebreak
 
 ### Data preparation
 
@@ -182,6 +202,8 @@ Discard non restaurant venues:
 * Cafeteria
 * Event Space
 
+\pagebreak
+
 Now we go back to *Data Collection* to obtain Venue ratings and likes for the selected neighborhoods.
 
 |    | Neighborhood                  | Venue                           |   Venue Rating |   Venue Likes |
@@ -198,9 +220,11 @@ Now we go back to *Data Collection* to obtain Venue ratings and likes for the se
 |  9 | Arts & Entertainment District | cevishiro                       |            0   |             3 |
 |... |...                            |...                              |...             |...            |
 
-![alt text](images/venues_rating_map.png "Venues rating - Folium map")
+![Venues rating - Folium map](images/venues_rating_map.png "Venues rating - Folium map")
 
 We observe a large number of venues with high ratings on Wynwood and Edgewater, also on Lummus Park.
+
+\pagebreak
 
 ### Exploratory Data Analysis
 
@@ -227,10 +251,17 @@ We have now a total of 239 venues on the 7 selected neighborhoods.
 The rating mean is very low, mainly because some of the venues don't have a rating, this does not mean that are bad venues,
 but it probably means that are not very popular among Foursquare users.
 
-![alt text](images/boxplot.png "Neighborhoods rating and likes box plot")
-![alt text](images/correlation_neighborhood_rating.png "Correlation between neighborhood and rating - box plot")
+\pagebreak
+
+![Neighborhoods rating and likes box plot](images/boxplot.png "Neighborhoods rating and likes box plot")
+
+\pagebreak
+
+![Correlation between neighborhood and rating - box plot](images/correlation_neighborhood_rating.png "Correlation between neighborhood and rating - box plot")
 
 We observe clearly on the images some Venue Likes outliers, not very consistent, unlike Venue Rating. The **median** on **Wynwood** is *high*, it seems promising.
+
+\pagebreak
 
 #### Correlation between Likes and Rating
 
@@ -239,19 +270,25 @@ We observe clearly on the images some Venue Likes outliers, not very consistent,
 | Venue Likes  |       0.575795 |
 | Venue Rating |       1        |
 
-![alt text](images/correlation_rating_likes.png "Correlation between venue rating and likes - Regression line")
+![Correlation between venue rating and likes - Regression line](images/correlation_rating_likes.png "Correlation between venue rating and likes - Regression line")
 
 The Pearson Correlation Coefficient is 0.5757952652873445 with a P-value of P = 1.6659918040644605e-22
 
 The data is telling us that there is a strong certainty of correlation with a moderate positive relationship.
 
+\pagebreak
+
 #### Correlation between neighborhood and Rating
 
-![alt text](images/contingency_table.png "Correlation between neighborhood and rating - Chi^2")
+\
+
+![Correlation between neighborhood and rating - Chi^2](images/contingency_table.png "Correlation between neighborhood and rating - Chi^2")
 
 Chi-square = 0.6501489066631156  P-value = 0.999998758598854
 
 There is no certainty of correlation between neighborhood and rating, it **does not reject the null hypothesis** that the two variables are independant, so **no evidence of association**.
+
+\pagebreak
 
 ## Results
 
